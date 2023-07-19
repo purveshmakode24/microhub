@@ -1,2 +1,2 @@
 # microhub
-Microservices using django, flask, react
+RabbitMQ connected containerized Microservices using django, flask, react. 
