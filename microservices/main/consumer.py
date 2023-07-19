@@ -34,9 +34,10 @@ def callback(channel, method, properties, body):
             db.session.commit()
             print('Product Deleted!')
 
+    # Acknowledge the message after successful processing and committing
     channel.basic_ack(delivery_tag=method.delivery_tag)
 
-# auto-ack=False by default to make sure messages are not lost incase of consumer system failure.
+# auto-ack=False (by default) to make sure messages are not lost incase of consumer system failure.
 channel.basic_consume(queue='main', on_message_callback=callback, auto_ack=False)
 
 print('Started Consuming...')
