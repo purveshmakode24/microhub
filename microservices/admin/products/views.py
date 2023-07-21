@@ -13,7 +13,6 @@ import random
 # Create your views here.
 
 class ProductViewSet(viewsets.ViewSet):
-
     def list(self, request):
         products = Product.objects.all()
         serializer = ProductSerializer(products, many=True)
@@ -28,7 +27,6 @@ class ProductViewSet(viewsets.ViewSet):
             serializer = ProductSerializer(data=request.data)
             serializer.is_valid(raise_exception=True)
             serializer.save()
-            print('test product created!')
             publish('product_created', serializer.data)
             return Response(serializer.data, status=status.HTTP_201_CREATED)
         except Exception as e:
